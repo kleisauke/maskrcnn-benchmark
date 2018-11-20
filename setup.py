@@ -77,10 +77,8 @@ def get_extensions():
 class rename_custom_ops_lib(distutils.command.build.build):
     def run(self):
         inst_dir = os.path.join(self.build_lib, 'maskrcnn_benchmark', 'lib')
-        lib_suffix = os.path.basename(torch._C.__file__).split('.', 1)[1]  # there must be a better way
-        ext = lib_suffix.rsplit('.', 1)[1]
-        os.rename(os.path.join(inst_dir, 'custom_ops.' + lib_suffix),
-                  os.path.join(inst_dir, 'libmaskrcnn_benchmark_customops.' + ext))
+        os.rename(os.path.join(inst_dir, 'custom_ops.so'),
+                  os.path.join(inst_dir, 'libmaskrcnn_benchmark_customops.so'))
 
 
 class build(distutils.command.build.build):
